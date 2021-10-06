@@ -4,11 +4,25 @@ import requests
 API_KEY = '89253bef34204bfa83812b218dc4553e'
 
 def home(request):
-    url = f'https://newsapi.org/v2/everything?q=tesla&from=2021-09-05&sortBy=publishedAt&apiKey={API_KEY}'
-    response =requests.get(url)
-    data = response.json()
-    
-    articles = data['articles']
+    country= request.GET.get('country')
+    category= request.GET.get('category')
+
+    if country:
+        url = f'https://newsapi.org/v2/top-headlines?country={country}&category=business&apiKey={API_KEY}'
+        response =requests.get(url)
+        data = response.json()
+        articles = data['articles']
+    else:
+        url = f'https://newsapi.org/v2/top-headlines?category={category}&category=business&apiKey={API_KEY}'
+        response =requests.get(url)
+        data = response.json()
+        articles = data['articles']
+        
+
+
+
+
+
 
     context={
         'articles':articles
