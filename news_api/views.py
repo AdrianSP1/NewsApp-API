@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import requests
 # Create your views here.
-API_KEY = '89253bef34204bfa83812b218dc4553e'
+API_KEY = ''
 
 def home(request):
     country= request.GET.get('country')
